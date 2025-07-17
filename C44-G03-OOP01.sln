@@ -1,25 +1,159 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.11.35312.102
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "session1", "session1.csproj", "{D4F36051-BE29-4874-A008-6EBBCB8FB166}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D4F36051-BE29-4874-A008-6EBBCB8FB166}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4F36051-BE29-4874-A008-6EBBCB8FB166}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4F36051-BE29-4874-A008-6EBBCB8FB166}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4F36051-BE29-4874-A008-6EBBCB8FB166}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {77E594C0-CC3B-4377-8AF5-6E7BB952131C}
-	EndGlobalSection
-EndGlobal
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+// /1 - Create an enum called "WeekDays" with the days of the week
+// /(Monday to Sunday) as its members. Then, write a C# program that
+// /prints out all the days of the week using this enum.
+namespace Weeks
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            showWeekDays();
+        }
+
+        static void showWeekDays()
+        {
+            foreach (WeekDaysEnum day in Enum.GetValues(typeof(WeekDaysEnum)))
+            {
+                Console.WriteLine(day);
+            }
+        }
+    }
+
+    public enum WeekDaysEnum
+    {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday
+    }
+}
+
+
+
+//2. Create an enum called "Season" with the four seasons (Spring,
+//Summer, Autumn, Winter) as its members. Write a C# program that
+//takes a season name as input from the user and displays the
+//corresponding month range for that season. Note range for seasons (
+//spring march to may , summer june to august , autumn September to
+//November , winter December to February)
+namespace Season
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            showSeason();
+        }
+
+        static void showSeason()
+        {
+            object season;
+            Console.WriteLine("Enter the season");
+            string input = Console.ReadLine();
+            SeasonEnum value;
+
+            bool result = Enum.TryParse(input, true, out value);
+            if (result)
+            {
+                if (value == SeasonEnum.Spring)
+                {
+                    Console.WriteLine("March to May");
+                }
+                else if (value == SeasonEnum.Summer)
+                {
+                    Console.WriteLine("June to August");
+                }
+                else if (value == SeasonEnum.Autumn)
+                {
+                    Console.WriteLine("September to November");
+                }
+                else if (value == SeasonEnum.Winter)
+                {
+                    Console.WriteLine("December to February");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Invalid season entered. Please enter a valid season (Spring, Summer, Autumn, Winter).");
+                return;
+            }
+
+
+        }
+
+
+    }
+
+    enum SeasonEnum
+    {
+        Spring,
+        Summer,
+        Autumn,
+        Winter
+    }
+
+}
+
+
+
+//5. Create an enum called "Colors" with the basic colors(Red, Green, Blue)
+//as its members.Write a C# program that takes a color name as input from
+//the user and displays a message indicating whether the input color is a
+//primary color or not.
+namespace Colors
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            showColor();
+        }
+
+        object color;
+        static void showColor()
+        {
+            Console.WriteLine("Enter the color");
+            string input = Console.ReadLine();
+            ColorsEnum value;
+            bool result = Enum.TryParse(input, true, out value);
+            if (result)
+            {
+                if (value == ColorsEnum.Red || value == ColorsEnum.Green || value == ColorsEnum.Blue)
+                {
+                    Console.WriteLine("The color is a primary color.");
+                }
+                else
+                {
+                    Console.WriteLine("The color is not a primary color.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid color entered. Please enter a valid color (Red, Green, Blue).");
+                return;
+            }
+
+
+        }
+    }
+
+    enum ColorsEnum
+    {
+        Red,
+        Green,
+        Blue
+    }
+
+
+}
